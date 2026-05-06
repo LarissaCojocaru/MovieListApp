@@ -1,0 +1,71 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    padding: 20px;
+}
+
+.container {
+    max-width: 6000px;
+    margin: 0 auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.form-section {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+    align-items: stretch; /* Forțează căsuțele și butonul să aibă exact aceeași înălțime */
+}
+
+input {
+    flex: 1;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    white-space: nowrap; /* Secretul! Împiedică textul să se mai rupă pe două rânduri */
+    transition: 0.2s;
+}
+
+    button:hover {
+        background-color: #218838;
+    }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+.btn-sterge {
+    background-color: #dc3545;
+    padding: 5px 10px;
+}
+
+    .btn-sterge:hover {
+        background-color: #c82333;
+    }

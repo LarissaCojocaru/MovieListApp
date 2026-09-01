@@ -1,6 +1,33 @@
 @MovieListApp_HostAddress = http://localhost:5005
 
-GET {{MovieListApp_HostAddress}}/weatherforecast/
+### List all movies
+GET {{MovieListApp_HostAddress}}/api/Movies
 Accept: application/json
 
-###
+### Get a single movie
+GET {{MovieListApp_HostAddress}}/api/Movies/1
+Accept: application/json
+
+### Create a movie
+POST {{MovieListApp_HostAddress}}/api/Movies
+Content-Type: application/json
+
+{
+  "title": "Blade Runner 2049",
+  "genre": "Science fiction",
+  "year": 2017
+}
+
+### Update a movie
+PUT {{MovieListApp_HostAddress}}/api/Movies/1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "title": "Blade Runner 2049",
+  "genre": "Science fiction",
+  "year": 2017
+}
+
+### Delete a movie
+DELETE {{MovieListApp_HostAddress}}/api/Movies/1

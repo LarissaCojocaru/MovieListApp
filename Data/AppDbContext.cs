@@ -7,7 +7,7 @@ namespace MovieListApp.Data
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-        // Aici îi spunem să creeze o tabelă numită "Movies"
+        // Maps to a "Movies" table in the database.
         public DbSet<Movie> Movies { get; set; }
     }
 }

@@ -25,7 +25,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-// Serves the HTML, CSS and JS in wwwroot
+// Serves the HTML, CSS and JS in wwwroot, with index.html as the default document
+// so the front end is reachable at / and not only at /index.html.
+app.UseDefaultFiles();
 app.UseStaticFiles();
 
 app.UseAuthorization();

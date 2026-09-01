@@ -61,11 +61,11 @@ th, td {
     text-align: left;
 }
 
-.btn-sterge {
+.btn-delete {
     background-color: #dc3545;
     padding: 5px 10px;
 }
 
-    .btn-sterge:hover {
+    .btn-delete:hover {
         background-color: #c82333;
     }

@@ -1,32 +1,33 @@
 ﻿<!DOCTYPE html>
-<html lang="ro">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>To Do App - Filme</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Movie List</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>Lista mea de Filme</h1>
+        <h1>My movie list</h1>
 
         <div class="form-section">
-            <input type="text" id="titlu" placeholder="Titlul filmului...">
-            <input type="text" id="gen" placeholder="Genul...">
-            <input type="number" id="an" placeholder="Anul...">
-            <button onclick="adaugaFilm()">Adaugă Film</button>
+            <input type="text" id="title" placeholder="Film title...">
+            <input type="text" id="genre" placeholder="Genre...">
+            <input type="number" id="year" placeholder="Year...">
+            <button onclick="addMovie()">Add film</button>
         </div>
 
-        <table id="tabelFilme">
+        <table id="movieTable">
             <thead>
                 <tr>
-                    <th>Titlu</th>
-                    <th>Gen</th>
-                    <th>An</th>
-                    <th>Acțiune</th>
+                    <th>Title</th>
+                    <th>Genre</th>
+                    <th>Year</th>
+                    <th>Action</th>
                 </tr>
             </thead>
-            <tbody id="listaFilme">
-                <!-- Aici vor apărea filmele din baza de date -->
+            <tbody id="movieList">
+                <!-- Rows are rendered here from the API -->
             </tbody>
         </table>
     </div>

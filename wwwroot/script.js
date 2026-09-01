@@ -1,59 +1,67 @@
-﻿const apiUrl = '/api/Movies'; // Adresa către controller-ul tău C#
+﻿const apiUrl = '/api/Movies';
 
-// Se apelează automat când deschizi pagina
-document.addEventListener('DOMContentLoaded', incarcaFilme);
+document.addEventListener('DOMContentLoaded', loadMovies);
 
-// CITEȘTE filmele (GET)
-async function incarcaFilme() {
+// GET /api/Movies
+async function loadMovies() {
     const response = await fetch(apiUrl);
-    const filme = await response.json();
+    const movies = await response.json();
 
-    const lista = document.getElementById('listaFilme');
-    lista.innerHTML = '';
+    const list = document.getElementById('movieList');
+    list.innerHTML = '';
 
-    filme.forEach(film => {
-        lista.innerHTML += `
-            <tr>
-                <td>${film.title}</td>
-                <td>${film.genre}</td>
-                <td>${film.year}</td>
-                <td><button class="btn-sterge" onclick="stergeFilm(${film.id})">Șterge</button></td>
-            </tr>
-        `;
+    movies.forEach(movie => {
+        const row = document.createElement('tr');
+        row.appendChild(cell(movie.title));
+        row.appendChild(cell(movie.genre));
+        row.appendChild(cell(movie.year));
+
+        const button = document.createElement('button');
+        button.className = 'btn-delete';
+        button.textContent = 'Delete';
+        button.addEventListener('click', () => deleteMovie(movie.id));
+
+        const actions = document.createElement('td');
+        actions.appendChild(button);
+        row.appendChild(actions);
+
+        list.appendChild(row);
     });
 }
 
-// ADAUGĂ un film nou (POST)
-async function adaugaFilm() {
-    const titlu = document.getElementById('titlu').value;
-    const gen = document.getElementById('gen').value;
-    const an = document.getElementById('an').value;
+// Builds a table cell with text content, so values from the API are never
+// injected into the page as HTML.
+function cell(value) {
+    const td = document.createElement('td');
+    td.textContent = value ?? '';
+    return td;
+}
 
-    if (!titlu) return alert('Titlul este obligatoriu!');
+// POST /api/Movies
+async function addMovie() {
+    const title = document.getElementById('title').value;
+    const genre = document.getElementById('genre').value;
+    const year = document.getElementById('year').value;
 
-    const filmNou = {
-        title: titlu,
-        genre: gen,
-        year: parseInt(an) || 0
-    };
+    if (!title) {
+        alert('A title is required.');
+        return;
+    }
 
     await fetch(apiUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(filmNou)
+        body: JSON.stringify({ title, genre, year: parseInt(year) || 0 })
     });
 
-    // Curăță căsuțele și reîncarcă lista
-    document.getElementById('titlu').value = '';
-    document.getElementById('gen').value = '';
-    document.getElementById('an').value = '';
-    incarcaFilme();
+    document.getElementById('title').value = '';
+    document.getElementById('genre').value = '';
+    document.getElementById('year').value = '';
+    loadMovies();
 }
 
-// ȘTERGE un film (DELETE)
-async function stergeFilm(id) {
-    await fetch(`${apiUrl}/${id}`, {
-        method: 'DELETE'
-    });
-    incarcaFilme();
+// DELETE /api/Movies/{id}
+async function deleteMovie(id) {
+    await fetch(`${apiUrl}/${id}`, { method: 'DELETE' });
+    loadMovies();
 }

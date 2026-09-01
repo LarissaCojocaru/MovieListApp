@@ -63,8 +63,8 @@ blocking on it.
 Prerequisites: .NET 8 SDK and SQL Server LocalDB.
 
 ```bash
-git clone https://github.com/LarissaCojocaru/MovieListApp.git
-cd MovieListApp
+git clone https://github.com/LarissaCojocaru/movie-api-dotnet.git
+cd movie-api-dotnet
 dotnet restore
 dotnet ef database update
 dotnet run
